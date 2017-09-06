@@ -287,7 +287,7 @@ if(session.getAttribute("admin_id")!=null)
 																		<td><%=rs_project.getString("startingDate") %> to <%=rs_project.getString("endingDate") %></td>
 																		
 																		<td>
-																		<a href="project-view.jsp?status=view&id=<%=rs_project.getString("id")%>" title="View"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;
+																		<a href="project-view.jsp?status=view&id=<%=rs_project.getString("id")%>" title="Team"><i class="fa fa-users"></i></a>&nbsp;&nbsp;
 																		
 																		<a href="projects.jsp?status=edit&id=<%=rs_project.getString("id")%>" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
 

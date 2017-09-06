@@ -99,7 +99,7 @@ if(session.getAttribute("admin_id")!=null)
             <div class="col-md-12">
                 <div class="panel panel-white">
                   <div class="panel-heading clearfix">
-                      <h4 class="panel-title">Project - <%=projectName%></h4>
+                      <h3 class="panel-title">Project - <%=projectName%></h3>
                    </div>
 					
                     <div class="panel-body">
@@ -109,59 +109,121 @@ if(session.getAttribute("admin_id")!=null)
 						 <td>Customer  </td> <td> : <%=clientName%></td>
 						 </tr>
 						 <tr><td colspan="2"><br></td></tr>
-						 <tr>
-						 <td>Project Name  </td><td> : <%=projectName%></td>
-						 </tr>
-						 <tr><td colspan="2"><br></td></tr>
+						 <% if(projectCode.length()>0){ %>
 						 <tr>
 						 <td>Project No. </td><td> : <%=projectCode%></td>
 						 </tr>
-						 <tr><td colspan="2"><br></td></tr>
+						 <tr><td colspan="2"><br></td></tr> 
+						 <%} %>
 						 <tr>
 						 <td>Starts on </td><td> : <%=startingDate%></td>
 						 </tr>
 						 <tr><td colspan="2"><br></td></tr>
 						 <tr>
-						 <td>Expected Date of Delivery </td><td> : <%=endingDate%></td>
+						 <td>Expected Date of Delivery &nbsp;</td><td> : <%=endingDate%></td>
 						 </tr>
 						 <tr><td colspan="2"><br></td></tr>
-						 </table>
-						 <b>Team</b> <br>
 						 <%
+						 if(specialNotes.length()>0)
+						 {
+							 %>
+							 <tr>
+						 <td>Special Notes </td><td> : <%=specialNotes%></td>
+						 </tr>
+							 <%
+						 }
+						 %>
+						  <tr><td colspan="2"><br></td></tr>
+						 </table> <br>
+						 <b>Team</b> <br>
+						<br>
+							
+							<form name="project" action="projects-submit.jsp" method="post">
+									<input type="hidden" name="teamName" value="<%=teamName%>">
+									<input type="hidden" name="status" value="team">
+									<input type="hidden" name="id" value="<%=id%>">
+							<div class="row">
+							<div class="form-group col-md-3">
+									  <!-- <input type="text" class="form-control" name="employee" placeholder="Employee Id" value="" maxlength="9" required> -->
+									   <select class="form-control" name="employee" required>
+									   		<option value="">--Select Employee--</option>
+									   		<%
+									   		Statement st_employee=con.createStatement();
+									   		ResultSet rs_employee=st_employee.executeQuery("select employeeId, firstName, lastName from employee_tab where status='YES' order by firstName, lastName");
+									   		while(rs_employee.next())
+									   		{
+									   		%>
+									   		<option value="<%=rs_employee.getString("employeeId") %>"> <%=rs_employee.getString("employeeId") %>  - <%=rs_employee.getString("firstName") %> <%=rs_employee.getString("lastName") %></option>
+									   		<%
+									   		}
+									   		rs_employee.close();
+									   		st_employee.close();
+									   		%>
+									   </select>
+							</div>
+							<div class="form-group col-md-3">
+									   <select name="role" class="form-control" required><option value="">--Select Role--</option> 
+											<option value="High Level">Top Level</option>
+											<option value="Middle Level">Middle Level</option>
+											<option value="Low Level">Low Level</option>
+									   </select>
+							</div>
+							<div class="form-group col-md-1">    			<!-- onclick="checkAvailabilityFunction7(document.project.employee.value,'checkDiv1','<%=teamName %>')" -->
+								<button type="submit"  class="btn btn-primary submit-save" >Add</button>&nbsp;&nbsp;
+							</div>
+							<div class="form-group col-md-3 checkDiv1"> </div>
+						</div>
+						
+						</form> <br><br>
+						 <div class="table">
+						<table id="example" class="display table" style="width: 100%; cellspacing: 0;">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Employee</th>
+										<th>Role</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+								<%
 							int j=0;
 							Statement st_team=con.createStatement();
-							ResultSet rs_team=st_team.executeQuery("select t.employeeId,t.role,e.firstName,e.lastName from team_tab t, employee_tab e where t.employeeId=e.employeeId and t.team='"+teamName+"' order by e.firstName, e.lastName");
+							ResultSet rs_team=st_team.executeQuery("select t.id,t.employeeId,t.role,e.firstName,e.lastName from team_tab t, employee_tab e where t.employeeId=e.employeeId and t.team='"+teamName+"' order by e.firstName, e.lastName");
 							while(rs_team.next())
 							{
 								j=j+1;
-								%> <%=j %>.&nbsp; <%=rs_team.getString("e.firstName") %> <%=rs_team.getString("e.lastName") %> [ <%=rs_team.getString("t.employeeId") %> ] <br> <%
+								%>
+								<tr>
+									<td><%=j %></td><td>[ <%=rs_team.getString("t.employeeId") %> ] <%=rs_team.getString("e.firstName") %> <%=rs_team.getString("e.lastName") %> </td>
+									
+									<td>
+									<form action="projects-submit.jsp" method="post">
+										<input type="hidden" name="teamid" value="<%=rs_team.getString("id") %>">
+										<input type="hidden" name="status" value="teamrole">
+										<input type="hidden" name="id" value="<%=id %>">
+										<select name="role" required>
+											<option value="<%=rs_team.getString("t.role") %>"><%=rs_team.getString("t.role") %></option> 
+											<option value="High">High</option>
+											<option value="Middle">Middle</option>
+											<option value="Low">Low</option>
+									   </select>
+									   <input type="submit" value="Set">
+									   </form>
+									</td>
+									<td>
+									<a href="projects-submit.jsp?status=teamdelete&teamid=<%=rs_team.getString("id")%>&id=<%=id %>" onClick="return con_delete()" title="Trash"><i class="fa fa-trash"></i>
+									</td>
+								</tr>
+								  <%
 							}
 							rs_team.close();
 							st_team.close();
 							%>	
-							<br><br>
-							
-							<form name="project" action="project-submit.jsp" method="post">
-							<div class="row">
-							<div class="form-group col-md-3">
-									   <input type="text" class="form-control" name="employee" placeholder="Employee Id" value="" maxlength="9" onChange="checkAvailabilityFunction8(this,'checkDiv1','<%=teamName %>')">
-							<br>
-							<div class="checkDiv1"></div>
-							</div>
-							
-							<div class="form-group col-md-3">
-									   <select name="role" class="form-control"><option value="">--Select Role--</option> 
-										<option value="High">High</option>
-										<option value="Middle">Middle</option>
-										<option value="Low">Low</option>
-									   </select>
-							</div>
-							<div class="form-group col-md-1">
-								<button type="submit" onClick="checkAvailabilityFunction8(this,'checkDiv1','<%=teamName %>')" class="btn btn-secondary">Add</button>&nbsp;&nbsp;
-							</div>
-							
+								</tbody>
+						</table>
 						</div>
-						</form>
+						
 				    </div>
 				</div>   
             </div>

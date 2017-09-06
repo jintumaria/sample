@@ -1,1 +1,3 @@
-haii
+<%
+out.println("haiii");
+%>

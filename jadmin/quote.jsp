@@ -76,7 +76,7 @@ if(session.getAttribute("admin_id")!=null)
 					if(rs_quote_view.next())
 					{
 						quote_to=rs_quote_view.getString("clientName");
-					record_quote=ino;
+					recordQuote=ino;
 				%>
                 
                 <div class="page-title">
@@ -139,22 +139,22 @@ if(session.getAttribute("admin_id")!=null)
                                                   <%
 						int j=0;
 						 double value_amount=0.00,tot_value_amount=0.00;
-			  			String query_invoice_temp="select * from add_cart where user_id='"+session.getAttribute("admin_id")+"' and session_id='"+ino+"' and status='A' order by modified_date desc";
+			  			String query_invoice_temp="select * from add_cart where userId='"+session.getAttribute("admin_id")+"' and sessionId='"+ino+"' and status='A' order by modifiedDateTime desc";
 						Statement st_invoice_temp=con.createStatement();
 						ResultSet rs_invoice_temp=st_invoice_temp.executeQuery(query_invoice_temp);
 						while(rs_invoice_temp.next())
 						{
 						j=j+1;
 							
-				value_amount=value_amount+(Double.parseDouble(rs_invoice_temp.getString("add_qty"))*(Double.parseDouble(rs_invoice_temp.getString("add_rate"))));
-								tot_value_amount=tot_value_amount+(Double.parseDouble(rs_invoice_temp.getString("add_qty"))*(Double.parseDouble(rs_invoice_temp.getString("add_rate"))));
+				value_amount=value_amount+(Double.parseDouble(rs_invoice_temp.getString("addQty"))*(Double.parseDouble(rs_invoice_temp.getString("addRate"))));
+								tot_value_amount=tot_value_amount+(Double.parseDouble(rs_invoice_temp.getString("addQty"))*(Double.parseDouble(rs_invoice_temp.getString("addRate"))));
 						
 %>
                                                     <tr>
                                                         <td><%=j%></td>
-                                                        <td><%=rs_invoice_temp.getString("item_name")%></td>
-                                                        <td><%=rs_invoice_temp.getString("add_qty")%></td>
-                                                        <td><%=rs_quote_view.getString("currency")%>&nbsp;<%=rs_invoice_temp.getString("add_rate")%></td>
+                                                        <td><%=rs_invoice_temp.getString("itemName")%></td>
+                                                        <td><%=rs_invoice_temp.getString("addQty")%></td>
+                                                        <td><%=rs_quote_view.getString("currency")%>&nbsp;<%=rs_invoice_temp.getString("addRate")%></td>
                                                         <td><%=rs_quote_view.getString("currency")%>&nbsp;<%=value_amount%></td>
                                                     </tr>
                                                     <%
@@ -185,9 +185,13 @@ if(session.getAttribute("admin_id")!=null)
                                           <img src="assets/images/signature.png">
                                         <%}else{%>
                                           <!--  <p> <%=body1%></p> -->
-                                            <%}%>
+                                            <%}
+                                          if(rs_quote_view.getString("termsAndConditions").length()>1)
+                                          {
+                                            %>
                                             <h4>Terms and Conditions :</h4>
                                             <p><%=rs_quote_view.getString("termsAndConditions")%></p>
+                                            <%} %>
                                             <br><br>
                                             <h3>Thank you !</h3>
                                         </div>

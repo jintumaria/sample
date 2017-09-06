@@ -157,13 +157,23 @@ if(session.getAttribute("admin_id")!=null)
 											while(rs_team.next())
 											{
 												j=j+1;
-												%> <%=j %>.&nbsp; <%=rs_team.getString("e.firstName") %> <%=rs_team.getString("e.lastName") %> [ <%=rs_team.getString("t.employeeId") %> ] <br> <%
+												%> <%=j %>.&nbsp; <%=rs_team.getString("e.firstName") %> <%=rs_team.getString("e.lastName") %> [ <%=rs_team.getString("t.employeeId") %> ] - <%=rs_team.getString("t.role") %> <br> <%
 											}
 											rs_team.close();
 											st_team.close();
-											%>	
+											
+											if(j==0)
+											{
+											%>
+												No members 
+											<%
+											}
+											%>
+												
 										</td>
 										<td>
+											<a href="project-view.jsp?status=view&id=<%=rs_project.getString("id")%>" title="Team"><i class="fa fa-users"></i></a>&nbsp;&nbsp;
+																		
 											<a href="projects.jsp?status=edit&id=<%=rs_project.getString("id")%>" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
 
                                             <a href="projects-submit.jsp?status=delete&id=<%=rs_project.getString("id")%>&team=<%=rs_project.getString("team")%>" onClick="return con_delete()" title="Trash"><i class="fa fa-trash"></i>
