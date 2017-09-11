@@ -146,7 +146,7 @@ if(session.getAttribute("admin_id")!=null)
 						while(rs_invoice.next())
 						{
 						i=i+1;
-							recordInvoice=rs_invoice.getString("ino");
+							record_invoice=rs_invoice.getString("ino");
 				
 %>
             <%@include file="payments.jsp"%>                            

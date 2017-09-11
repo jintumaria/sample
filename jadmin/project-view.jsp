@@ -204,9 +204,9 @@ if(session.getAttribute("admin_id")!=null)
 										<input type="hidden" name="id" value="<%=id %>">
 										<select name="role" required>
 											<option value="<%=rs_team.getString("t.role") %>"><%=rs_team.getString("t.role") %></option> 
-											<option value="High">High</option>
-											<option value="Middle">Middle</option>
-											<option value="Low">Low</option>
+											<option value="High Level">High Level</option>
+											<option value="Middle Level">Middle Level</option>
+											<option value="Low Level">Low Level</option>
 									   </select>
 									   <input type="submit" value="Set">
 									   </form>

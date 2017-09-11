@@ -113,8 +113,7 @@ if(session.getAttribute("login_id")!=null)
                     </div>
                 </div>
                 <div id="main-wrapper" class="container">
-					
-                    <div class="row">
+				    <div class="row">
 						
                         <div class="col-md-3 user-profile">
                          <div class="profile-image-container">

@@ -79,20 +79,20 @@ function con_t()
 								  <li><a href="#">Holidays</a></li>	-->							  
                             </ul>
                         </li>
-                        <!-- <li class="droplink"><a href="#"><span class="menu-icon icon-note"></span><p>Projects</p><span class="arrow"></span></a>
-                            <ul class="sub-menu">
-                            	<li><a href="#">Project Information</a></li> 
-                                <li><a href="#">Document Manager</a></li>                                                                                
-                            </ul>
-                        </li> -->
-                        
-                        <li class="droplink"><a href="#"><span class="menu-icon  icon-users"></span><p>Project Management</p><span class="arrow"></span></a>
+						<li class="droplink"><a href="#"><span class="menu-icon  icon-users"></span><p>Project Management</p><span class="arrow"></span></a>
                             <ul class="sub-menu">
                             
                                   <li><a href="projects.jsp?status=insert">New Project</a></li> 
                                   <li><a href="projects-search.jsp">Search Projects</a></li> 
                              </ul>
                         </li>
+						
+                       <!--  <li class="droplink"><a href="#"><span class="menu-icon icon-note"></span><p>Projects</p><span class="arrow"></span></a>
+                            <ul class="sub-menu">
+                            	<li><a href="#">Project Information</a></li> 
+                                <li><a href="#">Document Manager</a></li>                                                                                
+                            </ul>
+                        </li> -->
                         <li class="droplink"><a href="#"><span class="menu-icon icon-envelope-open"></span><p>Sales</p><span class="arrow"></span></a>
                             <ul class="sub-menu">
                                       <li class="droplink"><a href="#">Quotes <span class="arrow"></span></a>

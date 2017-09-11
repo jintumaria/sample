@@ -11,7 +11,7 @@ if(session.getAttribute("login_id")!=null)
         
           <!-- Title -->
         <title><%=titleName%></title>
-        <link rel="SHORTCUT ICON" href="assets/images/admin.png"/>
+        <link rel="SHORTCUT ICON" href="../jadmin/assets/images/admin.png"/>
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta charset="UTF-8">
         <meta name="description" content="<%=titleName%>" />

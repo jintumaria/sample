@@ -1,5 +1,5 @@
 <%
-String type="",copyInvoiceNo="";
+String type="",copyInvoiceNo="",recordInvioce="";
 if(request.getParameter("id")!=null)										{				id=request.getParameter("id").replaceAll("'","`");			}
 if(request.getParameter("status")!=null)									{				status=request.getParameter("status").replaceAll("'","`");			}
 if(request.getParameter("type")!=null)									{				type=request.getParameter("type").replaceAll("'","`");			}

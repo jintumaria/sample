@@ -1,6 +1,5 @@
 <%@include file="include/dbconnection.jsp"%>
-<%@include file="include/utilities.jsp"%>
-<%@include file="quote-settings-info.jsp"%>
+<%@include file="include/utilities.jsp"%><%@include file="quote-settings-info.jsp"%>
 <%
 if(session.getAttribute("admin_id")!=null)
 	{
@@ -171,10 +170,8 @@ if(session.getAttribute("admin_id")!=null)
                                  </div>
                                 </div>
                               </form>   
-                            </div>
-                                             
-                                                     
-                                                </div>            
+                            </div>			
+                   </div>            
                                                 
                                                
                                                 

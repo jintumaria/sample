@@ -72,7 +72,7 @@ function con_t()
                         </li> -->
                          <li class="droplink"><a href="#"><span class="menu-icon icon-briefcase"></span><p>Projects</p><span class="arrow"></span></a>
                             <ul class="sub-menu">
-                            	<li><a href="#">Project Information</a></li> 
+                            	<li><a href="projects.jsp">Project Information</a></li> 
                                 <li><a href="#">Document Manager</a></li>                                                                                
                             </ul>
                         </li>  

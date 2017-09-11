@@ -1,3 +1,1 @@
-<%
-out.println("haiii");
-%>
+haii
